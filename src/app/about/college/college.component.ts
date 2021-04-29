@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class CollegeComponent implements OnInit {
 	college?: AboutInterface;
 	isLoading = true;
-	imgPath = 'assets/img/';
+	imgPath = '/assets/img/';
 	routs = ['about', 'courses', 'teachers', 'contacts'];
 
 	constructor(@Inject(COLLEGE_ABOUT$) readonly college$: Observable<AboutInterface>, private translate: TranslateService) {
