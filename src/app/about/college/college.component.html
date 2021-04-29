@@ -1,0 +1,48 @@
+<main class="row p-4">
+	<div *ngIf="isLoading" class="d-flex vh-100 vw-100 justify-content-center align-items-center load-message">
+		{{ 'college.Loader_message' | translate }}
+	</div>
+	<div *ngIf="!isLoading && college" class="card mb-3 shadow" style="max-width: 540px">
+		<div class="row g-0">
+			<div class="col-md-4">
+				<img [src]="imgPath + college.photo" alt="" class="h-100 w-100 img-college" />
+			</div>
+			<div class="col-md-8">
+				<div class="card-body">
+					<div class="card-title d-flex justify-content-between">
+						<h5 class="">{{ college.name }}</h5>
+						<div class="">
+							<div
+								#langBox
+								(click)="changeLang($event, langBox)"
+								class="btn-group btn-group-sm"
+								role="group"
+								aria-label="Basic outlined example"
+							>
+								<span
+									*ngFor="let lang of translate.getLangs()"
+									[ngClass]="{ active: lang == translate.getBrowserLang() }"
+									class="btn btn-outline-primary"
+									>{{ lang }}</span
+								>
+							</div>
+						</div>
+					</div>
+
+					<div class="card-text">
+						<div class="row">
+							<nav class="d-sm-flex">
+								<ul class="no-wrap">
+									<li *ngFor="let item of routs">
+										<a [routerLink]="['/', item]" class="active">{{ 'college.' + (item | titlecase) | translate }}</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+					<div class="college-description">{{ college.about }}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
